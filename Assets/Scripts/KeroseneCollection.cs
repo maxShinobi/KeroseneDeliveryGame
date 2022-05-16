@@ -5,19 +5,25 @@ using UnityEngine.UI;
 
 public class KeroseneCollection : MonoBehaviour
 {
-    [SerializeField] GameObject pressEtoBuy;
+    [SerializeField] Canvas keroseneCollectionCanvas;
 
     int kerosenePrice = 1;
+
+    private void Awake()
+    {
+        keroseneCollectionCanvas.enabled = false;
+    }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            pressEtoBuy.SetActive(true);
+            keroseneCollectionCanvas.enabled = true;
 
             if (Input.GetKey(KeyCode.E))
             {
                 PlayerKerosene.instance.FillTheKeroseneBar(1);
+                PlayerKerosene.instance.UpdatePlayerMoney();
                 SellKerosine(kerosenePrice);
 
                 if(PlayerKerosene.instance.currentValue == 100)
@@ -29,7 +35,7 @@ public class KeroseneCollection : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-            pressEtoBuy.SetActive(false);
+        keroseneCollectionCanvas.enabled = false;
     }
 
     private int SellKerosine(int sellValue)

@@ -16,6 +16,7 @@ public class PlayerKerosene : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        PlayerUIController.instance.playerMoneyText.text = playerMoney + "$";
     }
 
     void SetCurrentState()
@@ -63,5 +64,9 @@ public class PlayerKerosene : MonoBehaviour
             }
 
             SetCurrentState();
+    }
+    public void UpdatePlayerMoney()
+    {
+        PlayerUIController.instance.playerMoneyText.text = playerMoney + "$";
     }
 }

@@ -15,11 +15,11 @@ NavMeshProjectSettings:
     cost: 1
   - name: Road2
     cost: 1
-  - name: 
+  - name: Road3
     cost: 1
-  - name: 
+  - name: Road4
     cost: 1
-  - name: 
+  - name: Road5
     cost: 1
   - name: 
     cost: 1
@@ -91,9 +91,9 @@ NavMeshProjectSettings:
       m_Flags: 0
   - serializedVersion: 2
     agentTypeID: -1372625422
-    agentRadius: 0.7
+    agentRadius: 0.4
     agentHeight: 3
-    agentSlope: 30
+    agentSlope: 60
     agentClimb: 1.5
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0

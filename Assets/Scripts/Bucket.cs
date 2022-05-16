@@ -51,6 +51,8 @@ public class Bucket : MonoBehaviour
     {
         PlayerKerosene.instance.playerMoney += buyPrice;
 
+        PlayerKerosene.instance.UpdatePlayerMoney();
+
         return buyPrice;
     }
 }
