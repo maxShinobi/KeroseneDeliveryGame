@@ -1,12 +1,13 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class RearWheelDrive : MonoBehaviour {
 
 	private WheelCollider[] wheels;
 
-	public float maxAngle = 30;
-	public float maxTorque = 300;
+/*	public float maxAngle = 30;
+	public float maxTorque = 300;*/
 	public GameObject wheelShape;
 
 	// here we find all the WheelColliders down in the hierarchy
@@ -35,7 +36,7 @@ public class RearWheelDrive : MonoBehaviour {
 	// this is a really simple approach to updating wheels
 	// here we simulate a rear wheel drive car and assume that the car is perfectly symmetric at local zero
 	// this helps us to figure our which wheels are front ones and which are rear
-	public void Update()
+/*	public void Update()
 	{
 		float angle = maxAngle * Input.GetAxis("Horizontal");
 		float torque = maxTorque * Input.GetAxis("Vertical");
@@ -54,11 +55,6 @@ public class RearWheelDrive : MonoBehaviour {
 				torque = -30f;
             }
 
-			if (Input.GetKey("space"))
-            {
-				torque = 0f;
-            }
-
 			// update visual wheels if any
 			if (wheelShape) 
 			{
@@ -73,5 +69,5 @@ public class RearWheelDrive : MonoBehaviour {
 			}
 
 		}
-	}
+	}*/
 }

@@ -11,46 +11,43 @@ public class KeroseneCollection : MonoBehaviour
 
     int kerosenePrice = 1;
 
+    bool buyButtonPressed;
+
     private void Awake()
     {
         keroseneCollectionCanvas.enabled = false;
-        Button btn = buyKeroseneButton.GetComponent<Button>();
-        btn.onClick.AddListener(BuyKerosene);
+        enabled = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
+        enabled = true;
         if (other.gameObject.tag == "Player")
         {
             keroseneCollectionCanvas.enabled = true;
+        }
 
-            if (Input.GetKey(KeyCode.E))
-            {
-                PlayerKerosene.instance.FillTheKeroseneBar(1);
-                PlayerKerosene.instance.UpdatePlayerMoney();
-                SellKerosine(kerosenePrice);
-
-                if(PlayerKerosene.instance.currentValue == 100)
-                {
-                    //play audio
-                }
-            }
+        if (buyButtonPressed)
+        {
+            PlayerKerosene.instance.FillTheKeroseneBar(1);
+            PlayerKerosene.instance.UpdatePlayerMoney();
+            SellKerosine(kerosenePrice);
         }
     }
     private void OnTriggerExit(Collider other)
     {
+        enabled = false;
         keroseneCollectionCanvas.enabled = false;
     }
 
-    public void BuyKerosene()
+    public void BuyKerosene(bool buying)
     {
-        PlayerKerosene.instance.FillTheKeroseneBar(1);
-        PlayerKerosene.instance.UpdatePlayerMoney();
-        SellKerosine(kerosenePrice);
-
-        if (PlayerKerosene.instance.currentValue == 100)
+        if(buying)
         {
-            //play audio
+            buyButtonPressed = true;
+        } else
+        {
+            buyButtonPressed = false;
         }
     }
 

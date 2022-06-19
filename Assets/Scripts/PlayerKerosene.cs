@@ -13,6 +13,8 @@ public class PlayerKerosene : MonoBehaviour
 
     [SerializeField] Image mask;
 
+    bool sellButtonPressed;
+
     private void Awake()
     {
         instance = this;
@@ -31,13 +33,25 @@ public class PlayerKerosene : MonoBehaviour
         {
             Bucket b = other.GetComponentInParent<Bucket>();
 
-                if (Input.GetKey(KeyCode.E) && b.KerosineDecrease(depletionValue) > 0)
+
+            if (sellButtonPressed && b.KerosineDecrease(depletionValue) > 0)
                 {
                     DepleteTheKeroseneBar(depletionValue);
                     Bucket.instance.BuyKerosine();
                 }
             }
         }
+
+    public void SellingKerosene(bool selling)
+    {
+        if(selling)
+        {
+            sellButtonPressed = true;
+        } else
+        {
+            sellButtonPressed = false;
+        }
+    }
 
     public void FillTheKeroseneBar(int value)
     {

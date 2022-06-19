@@ -14,7 +14,7 @@ public class EasySuspension : MonoBehaviour {
 
 	public bool setSuspensionDistance = true;
 
-    void Update () {
+    void FixedUpdate () {
 		// work out the stiffness and damper parameters based on the better spring model
 		foreach (WheelCollider wc in GetComponentsInChildren<WheelCollider>()) {
 			JointSpring spring = wc.suspensionSpring;

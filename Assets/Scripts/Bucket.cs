@@ -9,25 +9,30 @@ public class Bucket : MonoBehaviour
 
     [SerializeField] GameObject pressEtoSell;
 
+    [SerializeField] Button sellKeroseneButton;
+
     private int amountNeeded = 10;
     private int buyPrice = 2;
 
     private void Awake()
     {
         instance = this;
+        enabled = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            pressEtoSell.SetActive(true);
+            sellKeroseneButton.enabled = true;
+            enabled = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        pressEtoSell.SetActive(false);
+        sellKeroseneButton.enabled = false;
+        enabled = false;
     }
 
     public int KerosineDecrease(int depletionValue)
