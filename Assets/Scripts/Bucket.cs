@@ -7,10 +7,6 @@ public class Bucket : MonoBehaviour
 {
     public static Bucket instance;
 
-    [SerializeField] GameObject pressEtoSell;
-
-    [SerializeField] Button sellKeroseneButton;
-
     private int amountNeeded = 10;
     private int buyPrice = 2;
 
@@ -24,14 +20,12 @@ public class Bucket : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            sellKeroseneButton.enabled = true;
             enabled = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        sellKeroseneButton.enabled = false;
         enabled = false;
     }
 

@@ -7,8 +7,6 @@ public class KeroseneCollection : MonoBehaviour
 {
     [SerializeField] Canvas keroseneCollectionCanvas;
 
-    [SerializeField] Button buyKeroseneButton;
-
     int kerosenePrice = 1;
 
     bool buyButtonPressed;
