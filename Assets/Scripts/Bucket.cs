@@ -46,16 +46,13 @@ public class Bucket : MonoBehaviour
         return amountNeeded;
     }
 
-    public int BuyKerosine()
+    public int SellKerosine()
     {
         if(PlayerKerosene.instance.currentValue >= 10)
         {
             PlayerKerosene.instance.playerMoney += buyPrice;
 
             PlayerKerosene.instance.UpdatePlayerMoney();
-        } else
-        {
-            Debug.Log("No kerosene to sell");
         }
         return buyPrice;
     }

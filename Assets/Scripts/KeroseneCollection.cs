@@ -29,7 +29,7 @@ public class KeroseneCollection : MonoBehaviour
         {
             PlayerKerosene.instance.FillTheKeroseneBar(1);
             PlayerKerosene.instance.UpdatePlayerMoney();
-            SellKerosine(kerosenePrice);
+            BuyKerosine(kerosenePrice);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -38,7 +38,7 @@ public class KeroseneCollection : MonoBehaviour
         keroseneCollectionCanvas.enabled = false;
     }
 
-    public void BuyKerosene(bool buying)
+    public void CanBuyKerosene(bool buying)
     {
         if(buying)
         {
@@ -49,11 +49,11 @@ public class KeroseneCollection : MonoBehaviour
         }
     }
 
-    private int SellKerosine(int sellValue)
+    private int BuyKerosine(int buyValue)
     {
         if (PlayerKerosene.instance.playerMoney >= 1 && PlayerKerosene.instance.currentValue <= 199)
         {
-            PlayerKerosene.instance.playerMoney -= sellValue;
+            PlayerKerosene.instance.playerMoney -= buyValue;
         }
         else
         {

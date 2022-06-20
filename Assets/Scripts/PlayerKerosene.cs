@@ -41,7 +41,7 @@ public class PlayerKerosene : MonoBehaviour
             if (sellButtonPressed && b.KerosineDecrease(depletionValue) > 0)
                 {
                     DepleteTheKeroseneBar(depletionValue);
-                    Bucket.instance.BuyKerosine();
+                    Bucket.instance.SellKerosine();
                 }
             }
         }
