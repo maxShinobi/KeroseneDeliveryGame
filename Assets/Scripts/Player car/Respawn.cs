@@ -1,50 +1,39 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Respawn : MonoBehaviour
 {
-    [SerializeField] GameObject respawnButton;
     [SerializeField] GameObject Player;
-
 
     [SerializeField] int lostKeroseneValue;
 
-    private Vector3 currentPosition;
-    private Quaternion currentRotation;
+    [SerializeField] private float rotateSpeed;
+
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
+
+    private void Start()
+    {
+        originalRotation = Player.transform.rotation;
+    }
 
     private void Update()
     {
-        currentPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        currentRotation = Quaternion.LookRotation(currentPosition);
-
-/*        if (Input.GetKeyDown("r"))
-        {
-            Player.transform.position = new Vector3(currentPosition.x, 5, currentPosition.z);
-            Player.transform.rotation = new Quaternion(0, 0, 0, 0);
-            respawnText.SetActive(false);
-        }*/
+        originalPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
     }
-
-/*    private void OnTriggerStay(Collider other)
-    {
-        if(other.gameObject.tag == "Ground")
-        {
-            respawnText.SetActive(true);
-        }
-    }*/
 
     public void RespawnCar()
     {
-        currentPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        currentRotation = Quaternion.EulerRotation(currentPosition);
-        Player.transform.position = new Vector3(currentPosition.x, 5, currentPosition.z);
+        originalPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+        Player.transform.position = new Vector3(originalPosition.x, 10, originalPosition.z);
+        
+        Player.transform.rotation = originalRotation;
 
         PlayerLosesSomeKerosene();
     }
 
     private void PlayerLosesSomeKerosene()
     {
-        if(PlayerKerosene.instance.currentValue >= 10)
+        if(PlayerKerosene.instance.currentValue >= 20)
         {
             PlayerKerosene.instance.DepleteTheKeroseneBar(lostKeroseneValue);
         }
