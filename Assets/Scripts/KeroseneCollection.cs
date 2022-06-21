@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class KeroseneCollection : MonoBehaviour
 {
@@ -51,13 +50,13 @@ public class KeroseneCollection : MonoBehaviour
 
     private int BuyKerosine(int buyValue)
     {
-        if (PlayerKerosene.instance.playerMoney >= 1 && PlayerKerosene.instance.currentValue <= 199)
+        if (PlayerKerosene.instance.playerMoney >= 1 && PlayerKerosene.instance.currentValue <= PlayerKerosene.instance.maximumValue)
         {
             PlayerKerosene.instance.playerMoney -= buyValue;
         }
         else
         {
-            //play audio
+            Debug.Log("not enough money or tank is full");
         }
         return PlayerKerosene.instance.playerMoney;
     }

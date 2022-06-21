@@ -11,9 +11,9 @@ public class PlayerKerosene : MonoBehaviour
 
     public int playerMoney;
 
-    [SerializeField] Image mask;
+    //public GameObject sellKeroseneButton;
 
-    [SerializeField] GameObject sellKeroseneButton;
+    [SerializeField] Image mask;
 
     [SerializeField] Collider bucketCollider;
 
@@ -36,9 +36,9 @@ public class PlayerKerosene : MonoBehaviour
         if (bucketCollider.gameObject.tag == "Bucket")
         {
             Bucket b = bucketCollider.GetComponentInParent<Bucket>();
-            sellKeroseneButton.SetActive(true);
+            //sellKeroseneButton.SetActive(true);
 
-            if (sellButtonPressed && b.KerosineDecrease(depletionValue) > 0)
+            if (b.KerosineDecrease(depletionValue) > 0)
                 {
                     DepleteTheKeroseneBar(depletionValue);
                     Bucket.instance.SellKerosine();
@@ -46,7 +46,7 @@ public class PlayerKerosene : MonoBehaviour
             }
         }
 
-    private void OnTriggerExit(Collider bucketCollider)
+/*    private void OnTriggerExit(Collider bucketCollider)
     {
         sellKeroseneButton.SetActive(false);
     }
@@ -61,7 +61,7 @@ public class PlayerKerosene : MonoBehaviour
         {
             sellButtonPressed = false;
         }
-    }
+    }*/
 
     public void FillTheKeroseneBar(int value)
     {

@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Bucket : MonoBehaviour
 {
     public static Bucket instance;
 
-    private int amountNeeded = 10;
+    [SerializeField] private int amountNeeded;
     private int buyPrice = 2;
 
     private void Awake()
@@ -38,6 +37,7 @@ public class Bucket : MonoBehaviour
             if (amountNeeded == 0)
             {
                 gameObject.SetActive(false);
+                //PlayerKerosene.instance.sellKeroseneButton.SetActive(false);
             }
         } else
         {
