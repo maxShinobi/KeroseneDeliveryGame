@@ -6,19 +6,73 @@ public class Respawn : MonoBehaviour
 
     [SerializeField] int lostKeroseneValue;
 
-    [SerializeField] private float rotateSpeed;
-
     private Vector3 originalPosition;
     private Quaternion originalRotation;
 
+    bool grounded;
+
     private void Start()
     {
-        originalRotation = Player.transform.rotation;
+        Player.transform.rotation = originalRotation;
+        grounded = true;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         originalPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+        originalRotation = new Quaternion(Player.transform.rotation.w, Player.transform.rotation.y, Player.transform.rotation.x, Player.transform.rotation.z);
+
+/*        RaycastHit hit;
+
+        if (Physics.Raycast(Player.transform.position, Vector3.up, out hit, 10))
+        {
+            Debug.DrawRay(transform.position, Vector3.up, Color.red, 999);
+            if (hit.transform.tag == "Ground")
+            {
+                grounded = false;
+                Debug.Log("up");
+            }
+
+        } else
+        {
+            grounded = true;
+        }
+        if (Physics.Raycast(Player.transform.position, Vector3.right, out hit, 1))
+        {
+            grounded = false;
+            Debug.Log("right");
+        }
+        else
+        {
+            grounded = true;
+        }
+        if (Physics.Raycast(Player.transform.position, Vector3.left, out hit, 1))
+        {
+            grounded = false;
+            Debug.Log("left");
+        }
+        else
+        {
+            grounded = true;
+        }
+        if (Physics.Raycast(Player.transform.position, Vector3.back, out hit, 1))
+        {
+            grounded = false;
+            Debug.Log("back");
+        }
+        else
+        {
+            grounded = true;
+        }
+        if (Physics.Raycast(Player.transform.position, Vector3.forward, out hit, 1))
+        {
+            grounded = false;
+            Debug.Log("fwd");
+        }
+        else
+        {
+            grounded = true;
+        }*/
     }
 
     public void RespawnCar()
@@ -26,7 +80,11 @@ public class Respawn : MonoBehaviour
         originalPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
         Player.transform.position = new Vector3(originalPosition.x, 10, originalPosition.z);
         
-        Player.transform.rotation = originalRotation;
+        if(!grounded)
+        {
+            //originalRotation = Player.transform.rotation;
+            Player.transform.rotation = new Quaternion(originalRotation.x, originalRotation.y, originalRotation.z, originalRotation.w);
+        }
 
         PlayerLosesSomeKerosene();
     }

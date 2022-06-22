@@ -6,7 +6,7 @@ public class LookAt : MonoBehaviour
 
     private void Start()
     {
-        target = GameObject.Find("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
