@@ -20,7 +20,7 @@ public class PlayerKerosene : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        PlayerUIController.instance.playerMoneyText.text = playerMoney + "$";
+        //PlayerUIController.instance.playerMoneyText.text = playerMoney + "$";
     }
 
     void SetCurrentState()
