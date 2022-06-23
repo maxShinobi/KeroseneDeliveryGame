@@ -21,6 +21,8 @@ public class CarSelection : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.GetInt("AmountOfMoney", PlayerMoney.instance.playerMoney);
+
         foreach(CarClass car in carClass)
         {
             if(car.price == 0)
@@ -53,12 +55,14 @@ public class CarSelection : MonoBehaviour
         if(c.isUnlocked)
         {
             buyButton.gameObject.SetActive(false);
+            startButton.interactable = true;
         }    
         else
         {
             buyButton.gameObject.SetActive(true);
-            
-            if(PlayerPrefs.GetInt("AmountOfMoney") >= c.price)
+            startButton.interactable = false;
+
+            if (PlayerPrefs.GetInt("AmountOfMoney", PlayerMoney.instance.playerMoney) >= c.price)
             {
                 buyButton.interactable = true;
             }
@@ -75,11 +79,14 @@ public class CarSelection : MonoBehaviour
         PlayerPrefs.SetInt(c.name, 1);
         PlayerPrefs.SetInt("SelectedCar", currentCarIndex);
         PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney - c.price);
+        PlayerMoney.instance.UpdatePlayerMoneyOnMainMenu();
         c.isUnlocked = true;
     }
 
     public void NextCar()
     {
+        PlayerPrefs.GetInt("AmountOfMoney", PlayerMoney.instance.playerMoney);
+
         carModels[currentCarIndex].SetActive(false);
 
         currentCarIndex++;
@@ -106,6 +113,8 @@ public class CarSelection : MonoBehaviour
 
     public void PreviousCar()
     {
+        PlayerPrefs.GetInt("AmountOfMoney", PlayerMoney.instance.playerMoney);
+
         carModels[currentCarIndex].SetActive(false);
 
         currentCarIndex--;

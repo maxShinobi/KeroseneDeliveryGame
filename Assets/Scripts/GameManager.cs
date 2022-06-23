@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject pauseButton;
     [SerializeField] GameObject pauseScreen;
-    [SerializeField] GameObject playerUI;
     [SerializeField] GameObject keroseneUI;
 
     [SerializeField] int activeCarIndex;
@@ -65,11 +64,13 @@ public class GameManager : MonoBehaviour
     {
         activePlayerCanvas.SetActive(false);
         keroseneUI.SetActive(false);
+        pauseButton.SetActive(false);
     }
 
     private void EnableThings()
     {
         activePlayerCanvas.SetActive(true);
         keroseneUI.SetActive(true);
+        pauseButton.SetActive(true);
     }
 }

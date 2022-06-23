@@ -15,20 +15,27 @@ public class PlayerMoney : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        playerMoney = PlayerPrefs.GetInt("AmountOfMoney", 3000);
+
         playerMoneyText.text = playerMoney + "$";
         playerMoneyText.text = "MONEY: " + playerMoney + "$";
-        playerMoney = PlayerPrefs.GetInt("AmountOfMoney", playerMoney);
     }
 
     public void UpdatePlayerMoney()
     {
+        playerMoney = PlayerPrefs.GetInt("AmountOfMoney", playerMoney);
+
         playerMoneyText.text = playerMoney + "$";
-        PlayerPrefs.SetInt("AmountOfMoney", playerMoney);
     }
 
     public void UpdatePlayerMoneyOnMainMenu()
     {
+        playerMoney = PlayerPrefs.GetInt("AmountOfMoney", playerMoney);
+
         playerMoneyText.text = "MONEY: " + playerMoney + "$";
-        PlayerPrefs.SetInt("AmountOfMoney", playerMoney);
     }
 }

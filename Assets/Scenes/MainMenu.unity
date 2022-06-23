@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2615415892840686119, guid: e829c2ac5305c9740af787b33b6e2a80, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2615415892840686119, guid: e829c2ac5305c9740af787b33b6e2a80, type: 3}
       propertyPath: m_LocalScale.x
@@ -211,7 +211,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8409517687184662076, guid: bcb0170c517143941964f8584be420b6, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8409517687184662076, guid: bcb0170c517143941964f8584be420b6, type: 3}
       propertyPath: m_LocalScale.x
@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMoneyText: {fileID: 1544669099}
-  playerMoney: 3000
+  playerMoney: 0
 --- !u!1 &1544669097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,8 +1411,8 @@ MonoBehaviour:
   carModels:
   - {fileID: 56531118}
   - {fileID: 55534887}
-  - {fileID: 1422629141}
   - {fileID: 2082215695}
+  - {fileID: 1422629141}
   - {fileID: 1940171026}
   - {fileID: 1595250778}
   carClass:
@@ -1699,7 +1699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2494587022872613135, guid: 56318ed4fc49923418e0d14515c1822e, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2494587022872613135, guid: 56318ed4fc49923418e0d14515c1822e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1778,7 +1778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2179226591736629904, guid: 5d8262d74ce71154899016517b504a0e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2179226591736629904, guid: 5d8262d74ce71154899016517b504a0e, type: 3}
       propertyPath: m_LocalScale.x
