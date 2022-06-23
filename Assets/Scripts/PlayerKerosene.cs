@@ -9,18 +9,13 @@ public class PlayerKerosene : MonoBehaviour
 
     public int maximumValue, minimumValue, currentValue, depletionValue;
 
-    public int playerMoney;
-
     [SerializeField] Image mask;
 
     [SerializeField] Collider bucketCollider;
 
-    bool sellButtonPressed;
-
     private void Awake()
     {
         instance = this;
-        //PlayerUIController.instance.playerMoneyText.text = playerMoney + "$";
     }
 
     void SetCurrentState()
@@ -68,9 +63,5 @@ public class PlayerKerosene : MonoBehaviour
             }
 
             SetCurrentState();
-    }
-    public void UpdatePlayerMoney()
-    {
-        PlayerUIController.instance.playerMoneyText.text = playerMoney + "$";
     }
 }

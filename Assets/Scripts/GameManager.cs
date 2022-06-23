@@ -14,56 +14,62 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playerUI;
     [SerializeField] GameObject keroseneUI;
 
+    [SerializeField] int activeCarIndex;
+    [SerializeField] GameObject[] cars;
+    
+    GameObject activePlayerCanvas;
+
     private void Awake()
     {
         instance = this;
     }
 
-    public void PauseGame(bool paused)
+    private void Start()
     {
-        if (paused)
+        activeCarIndex = PlayerPrefs.GetInt("SelectedCar", 0);
+
+        foreach (GameObject car in cars)
         {
-            pauseScreen.SetActive(true);
-            DisableThings();
-            Time.timeScale = 0f;
+            if(car.activeInHierarchy)
+            {
+                activePlayerCanvas = GameObject.Find("PlayerUI");
+            }
         }
     }
 
-    public void ResumeGame(bool unpaused)
+    public void PauseGame()
     {
-        if(unpaused)
-        {
-            pauseScreen.SetActive(false);
-            EnableThings();
-            Time.timeScale = 1f;
-        }
+        pauseScreen.SetActive(true);
+        DisableThings();
+        Time.timeScale = 0f;
     }
 
-    public void Settings(bool setting)
+    public void ResumeGame()
     {
-        if(setting)
-        {
-
-        }
+        pauseScreen.SetActive(false);
+        EnableThings();
+        Time.timeScale = 1f;
     }
 
-    public void ExitGame(bool exiting)
+    public void Settings()
     {
-        if(exiting)
-        {
-            SceneManager.LoadScene(mainMenu);
-        }
+        
+    }
+
+    public void ExitGame()
+    {
+        SceneManager.LoadScene(mainMenu);
     }
 
     private void DisableThings()
     {
-        playerUI.SetActive(false);
+        activePlayerCanvas.SetActive(false);
         keroseneUI.SetActive(false);
     }
 
     private void EnableThings()
     {
-        playerUI.SetActive(true);
+        activePlayerCanvas.SetActive(true);
         keroseneUI.SetActive(true);
     }
 }

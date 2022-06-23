@@ -1,17 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CarSelection : MonoBehaviour
 {
+    public string mainScene;
+
     [SerializeField] float rotationSpeed;
 
     [SerializeField] int currentCarIndex;
 
+    [SerializeField] Button buyButton;
+    [SerializeField] Button startButton;
+
     [SerializeField] GameObject[] carModels;
+
+    [SerializeField] CarClass[] carClass;
 
     private void Start()
     {
+        foreach(CarClass car in carClass)
+        {
+            if(car.price == 0)
+            {
+                car.isUnlocked = true;
+            } else
+            {
+                car.isUnlocked = PlayerPrefs.GetInt(car.name, 0)== 0 ? false : true;
+            }
+        }
+
         currentCarIndex = PlayerPrefs.GetInt("SelectedCar", 0);
 
         foreach (GameObject car in carModels)
@@ -24,6 +44,38 @@ public class CarSelection : MonoBehaviour
     private void Update()
     {
         transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        CarClass c = carClass[currentCarIndex];
+        if(c.isUnlocked)
+        {
+            buyButton.gameObject.SetActive(false);
+        }    
+        else
+        {
+            buyButton.gameObject.SetActive(true);
+            
+            if(PlayerPrefs.GetInt("AmountOfMoney") >= c.price)
+            {
+                buyButton.interactable = true;
+            }
+            else
+            {
+                buyButton.interactable = false;
+            }
+        }
+    }
+
+    public void UnlockCar()
+    {
+        CarClass c = carClass[currentCarIndex];
+        PlayerPrefs.SetInt(c.name, 1);
+        PlayerPrefs.SetInt("SelectedCar", currentCarIndex);
+        PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney - c.price);
+        c.isUnlocked = true;
     }
 
     public void NextCar()
@@ -37,6 +89,18 @@ public class CarSelection : MonoBehaviour
             currentCarIndex = 0;
         }
         carModels[currentCarIndex].SetActive(true);
+
+        CarClass c = carClass[currentCarIndex];
+        if(!c.isUnlocked)
+        {
+            startButton.interactable = false;
+            return;
+        }
+        else
+        {
+            startButton.interactable = true;
+        }    
+
         PlayerPrefs.SetInt("SelectedCar", currentCarIndex);
     }
 
@@ -51,6 +115,32 @@ public class CarSelection : MonoBehaviour
             currentCarIndex = carModels.Length -1;
         }
         carModels[currentCarIndex].SetActive(true);
+
+        CarClass c = carClass[currentCarIndex];
+        if (!c.isUnlocked)
+        {
+            startButton.interactable = false;
+            return;
+        }
+        else
+        {
+            startButton.interactable = true;
+        }
+
         PlayerPrefs.SetInt("SelectedCar", currentCarIndex);
+    }
+
+    public void StartGame()
+    {
+        CarClass c = carClass[currentCarIndex];
+        if(!c.isUnlocked)
+        {
+            startButton.interactable = false;
+        }
+        else
+        {
+            startButton.interactable = true;
+            SceneManager.LoadScene(mainScene);
+        }
     }
 }

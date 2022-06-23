@@ -29,10 +29,9 @@ public class KeroseneCollection : MonoBehaviour
         if (buyButtonPressed && !playerTankIsFull)
         {
             PlayerKerosene.instance.FillTheKeroseneBar(1);
-            PlayerKerosene.instance.UpdatePlayerMoney();
+            PlayerMoney.instance.UpdatePlayerMoney();
             BuyKerosine(kerosenePrice);
         }
-
     }
     private void OnTriggerExit(Collider other)
     {
@@ -53,10 +52,10 @@ public class KeroseneCollection : MonoBehaviour
 
     private int BuyKerosine(int buyValue)
     {
-        if (PlayerKerosene.instance.playerMoney >= 1 && PlayerKerosene.instance.currentValue <= PlayerKerosene.instance.maximumValue)
+        if (PlayerMoney.instance.playerMoney >= 1 && PlayerKerosene.instance.currentValue <= PlayerKerosene.instance.maximumValue)
         {
             canBuySomeKerosine = true;
-            PlayerKerosene.instance.playerMoney -= buyValue;
+            PlayerMoney.instance.playerMoney -= buyValue;
 
             if (PlayerKerosene.instance.currentValue == PlayerKerosene.instance.maximumValue)
             {
@@ -73,6 +72,6 @@ public class KeroseneCollection : MonoBehaviour
         {
             Debug.Log("not enough money");
         }
-        return PlayerKerosene.instance.playerMoney;
+        return PlayerMoney.instance.playerMoney;
     }
 }

@@ -50,9 +50,9 @@ public class Bucket : MonoBehaviour
     {
         if(PlayerKerosene.instance.currentValue >= 10)
         {
-            PlayerKerosene.instance.playerMoney += buyPrice;
+            PlayerMoney.instance.playerMoney += buyPrice;
 
-            PlayerKerosene.instance.UpdatePlayerMoney();
+            PlayerMoney.instance.UpdatePlayerMoney();
         }
         return buyPrice;
     }

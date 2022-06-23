@@ -15,78 +15,24 @@ public class Respawn : MonoBehaviour
     {
         Player.transform.rotation = originalRotation;
         grounded = true;
+        Debug.LogFormat("{0} qwe {1}", Player.transform.rotation.w, Player.transform.rotation.z);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         originalPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
         originalRotation = new Quaternion(Player.transform.rotation.w, Player.transform.rotation.y, Player.transform.rotation.x, Player.transform.rotation.z);
-
-/*        RaycastHit hit;
-
-        if (Physics.Raycast(Player.transform.position, Vector3.up, out hit, 10))
-        {
-            Debug.DrawRay(transform.position, Vector3.up, Color.red, 999);
-            if (hit.transform.tag == "Ground")
-            {
-                grounded = false;
-                Debug.Log("up");
-            }
-
-        } else
-        {
-            grounded = true;
-        }
-        if (Physics.Raycast(Player.transform.position, Vector3.right, out hit, 1))
-        {
-            grounded = false;
-            Debug.Log("right");
-        }
-        else
-        {
-            grounded = true;
-        }
-        if (Physics.Raycast(Player.transform.position, Vector3.left, out hit, 1))
-        {
-            grounded = false;
-            Debug.Log("left");
-        }
-        else
-        {
-            grounded = true;
-        }
-        if (Physics.Raycast(Player.transform.position, Vector3.back, out hit, 1))
-        {
-            grounded = false;
-            Debug.Log("back");
-        }
-        else
-        {
-            grounded = true;
-        }
-        if (Physics.Raycast(Player.transform.position, Vector3.forward, out hit, 1))
-        {
-            grounded = false;
-            Debug.Log("fwd");
-        }
-        else
-        {
-            grounded = true;
-        }*/
     }
 
     public void RespawnCar()
     {
         originalPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
         Player.transform.position = new Vector3(originalPosition.x, 10, originalPosition.z);
-        
-        if(!grounded)
-        {
-            //originalRotation = Player.transform.rotation;
-            Player.transform.rotation = new Quaternion(originalRotation.x, originalRotation.y, originalRotation.z, originalRotation.w);
-        }
+
+            originalRotation = Player.transform.rotation;
 
         PlayerLosesSomeKerosene();
+        Debug.LogFormat("{0} qwe {1}", Player.transform.rotation.w, Player.transform.rotation.z);
     }
 
     private void PlayerLosesSomeKerosene()

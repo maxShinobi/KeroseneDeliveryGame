@@ -6,8 +6,8 @@ public class SECRET : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            PlayerKerosene.instance.playerMoney += 1000000;
-            PlayerKerosene.instance.UpdatePlayerMoney();
+            PlayerMoney.instance.playerMoney += 1000000;
+            PlayerMoney.instance.UpdatePlayerMoney();
             Destroy(gameObject);
         }
     }
