@@ -27,7 +27,7 @@ public class Respawn : MonoBehaviour
     public void RespawnCar()
     {
         originalPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        Player.transform.position = new Vector3(originalPosition.x, 10, originalPosition.z);
+        Player.transform.position = new Vector3(originalPosition.x, 1, originalPosition.z);
 
             originalRotation = Player.transform.rotation;
 

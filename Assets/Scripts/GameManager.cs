@@ -12,15 +12,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseButton;
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject keroseneUI;
+    [SerializeField] GameObject[] cars;
 
     [SerializeField] int activeCarIndex;
-    [SerializeField] GameObject[] cars;
+
     
     GameObject activePlayerCanvas;
 
     private void Awake()
     {
         instance = this;
+
+        Time.timeScale = 1f;
     }
 
     private void Start()

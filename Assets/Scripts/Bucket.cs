@@ -7,7 +7,11 @@ public class Bucket : MonoBehaviour
     public static Bucket instance;
 
     [SerializeField] private int amountNeeded;
+
     private int buyPrice = 2;
+    private int playerKerosene;
+
+    private GameObject activeCar;
 
     private void Awake()
     {
@@ -15,9 +19,16 @@ public class Bucket : MonoBehaviour
         enabled = false;
     }
 
+    private void Start()
+    {
+        StartGameCarSelection.instance.CheckActiveCar();
+        activeCar = StartGameCarSelection.instance.cars[StartGameCarSelection.instance.currentCarIndex];
+        playerKerosene = activeCar.GetComponent<PlayerKerosene>().currentValue;
+    }
+
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject == activeCar)
         {
             enabled = true;
         }
@@ -30,14 +41,13 @@ public class Bucket : MonoBehaviour
 
     public int KerosineDecrease(int depletionValue)
     {
-        if(amountNeeded > 0 && PlayerKerosene.instance.currentValue >= 10)
+        if(amountNeeded > 0 && playerKerosene >= 10)
         {
             amountNeeded -= depletionValue;
 
             if (amountNeeded == 0)
             {
                 gameObject.SetActive(false);
-                //PlayerKerosene.instance.sellKeroseneButton.SetActive(false);
             }
         } else
         {
@@ -48,7 +58,7 @@ public class Bucket : MonoBehaviour
 
     public int SellKerosine()
     {
-        if(PlayerKerosene.instance.currentValue >= 10)
+        if(playerKerosene >= 10)
         {
             PlayerMoney.instance.playerMoney += buyPrice;
 

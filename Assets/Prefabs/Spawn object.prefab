@@ -277,7 +277,6 @@ GameObject:
   - component: {fileID: 3497524933043636954}
   - component: {fileID: 8754376602702822818}
   - component: {fileID: 5112117975917246910}
-  - component: {fileID: 2690754364703479623}
   m_Layer: 0
   m_Name: arrow
   m_TagString: Untagged
@@ -371,18 +370,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &2690754364703479623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2221249287621841946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85c80bb22ea10e44680e4f5969cbadcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3013063491921746336
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b991754584913b4cae77e7bb36c2e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sellKeroseneButton: {fileID: 482301915799431336}
+  amountNeeded: 10
 --- !u!65 &630151066468181690
 BoxCollider:
   m_ObjectHideFlags: 0

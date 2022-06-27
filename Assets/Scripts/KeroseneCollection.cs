@@ -55,7 +55,8 @@ public class KeroseneCollection : MonoBehaviour
         if (PlayerMoney.instance.playerMoney >= 1 && PlayerKerosene.instance.currentValue <= PlayerKerosene.instance.maximumValue)
         {
             canBuySomeKerosine = true;
-            PlayerMoney.instance.playerMoney -= buyValue;
+
+            PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney -= buyValue);
 
             if (PlayerKerosene.instance.currentValue == PlayerKerosene.instance.maximumValue)
             {

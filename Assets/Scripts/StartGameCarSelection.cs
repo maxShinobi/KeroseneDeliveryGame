@@ -17,6 +17,11 @@ public class StartGameCarSelection : MonoBehaviour
 
     private void Start()
     {
+        CheckActiveCar();
+    }
+
+    public void CheckActiveCar()
+    {
         currentCarIndex = PlayerPrefs.GetInt("SelectedCar", 0);
 
         foreach (GameObject car in cars)

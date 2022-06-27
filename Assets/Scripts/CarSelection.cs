@@ -85,7 +85,7 @@ public class CarSelection : MonoBehaviour
 
     public void NextCar()
     {
-        PlayerPrefs.GetInt("AmountOfMoney", PlayerMoney.instance.playerMoney);
+        //PlayerPrefs.GetInt("AmountOfMoney", PlayerMoney.instance.playerMoney);
 
         carModels[currentCarIndex].SetActive(false);
 
@@ -113,7 +113,7 @@ public class CarSelection : MonoBehaviour
 
     public void PreviousCar()
     {
-        PlayerPrefs.GetInt("AmountOfMoney", PlayerMoney.instance.playerMoney);
+        //PlayerPrefs.GetInt("AmountOfMoney", PlayerMoney.instance.playerMoney);
 
         carModels[currentCarIndex].SetActive(false);
 

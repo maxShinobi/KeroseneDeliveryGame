@@ -59,7 +59,7 @@ public class CarAI : MonoBehaviour
         CalculateNavMashLayerBite();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         UpdateWheels();
         ApplySteering();

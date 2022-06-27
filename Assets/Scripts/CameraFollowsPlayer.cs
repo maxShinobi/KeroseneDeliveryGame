@@ -5,42 +5,45 @@ using Cinemachine;
 
 public class CameraFollowsPlayer : MonoBehaviour
 {
-    GameObject player;
-    GameObject Tako;
-    GameObject Dodger;
-    GameObject Lastrada;
-    GameObject MordFustang;
-    GameObject Tirex;
-    GameObject Thunderbolt;
+    [SerializeField] GameObject Tako;
+    [SerializeField] GameObject Dodger;
+    [SerializeField] GameObject Lastrada;
+    [SerializeField] GameObject MordFustang;
+    [SerializeField] GameObject Tirex;
+    [SerializeField] GameObject Thunderbolt;
+
+    [SerializeField] CinemachineVirtualCamera vcam;
 
     Transform followTarget;
 
-    CinemachineVirtualCamera vcam;
+    GameObject player;
+    GameObject activePlayer;
+
 
     private void Start()
     {
+        StartGameCarSelection.instance.CheckActiveCar();
+
         vcam = GetComponent<CinemachineVirtualCamera>();
         var transposer = vcam.GetCinemachineComponent<CinemachineTransposer>();
         var composer = vcam.GetCinemachineComponent<CinemachineComposer>();
 
         player = GameObject.FindWithTag("Player");
 
-        Tako = GameObject.Find("Tako");
-        Dodger = GameObject.Find("Dodger");
-        Lastrada = GameObject.Find("Lastrada");
-        MordFustang = GameObject.Find("Mord Fustang");
-        Tirex = GameObject.Find("Tirex");
-        Thunderbolt = GameObject.Find("I-11 Thunderbolt");
-
         if (player.activeInHierarchy)
         {
-            followTarget = player.transform;
+            Debug.Log("player active");
+            activePlayer = player;
+
+            followTarget = activePlayer.transform;
+
             vcam.LookAt = followTarget;
             vcam.Follow = followTarget;
         }
 
         if(Tako.activeInHierarchy)
         {
+            Debug.Log("tako");
             transposer.m_FollowOffset.x = 0f;
             transposer.m_FollowOffset.y = 2.64f;
             transposer.m_FollowOffset.z = -4.91f;
@@ -52,6 +55,7 @@ public class CameraFollowsPlayer : MonoBehaviour
 
         if (Dodger.activeInHierarchy)
         {
+            Debug.Log("do");
             transposer.m_FollowOffset.x = 0f;
             transposer.m_FollowOffset.y = 2.34f;
             transposer.m_FollowOffset.z = -4.91f;
@@ -63,6 +67,7 @@ public class CameraFollowsPlayer : MonoBehaviour
 
         if (Lastrada.activeInHierarchy)
         {
+            Debug.Log("la");
             transposer.m_FollowOffset.x = 0f;
             transposer.m_FollowOffset.y = 2.77f;
             transposer.m_FollowOffset.z = -6.95f;
@@ -74,6 +79,7 @@ public class CameraFollowsPlayer : MonoBehaviour
 
         if (MordFustang.activeInHierarchy)
         {
+            Debug.Log("mf");
             transposer.m_FollowOffset.x = 0f;
             transposer.m_FollowOffset.y = 2.48f;
             transposer.m_FollowOffset.z = -4.96f;
@@ -85,6 +91,7 @@ public class CameraFollowsPlayer : MonoBehaviour
 
         if (Tirex.activeInHierarchy)
         {
+            Debug.Log("tirex");
             transposer.m_FollowOffset.x = 0f;
             transposer.m_FollowOffset.y = 3.25f;
             transposer.m_FollowOffset.z = -7f;
@@ -96,6 +103,7 @@ public class CameraFollowsPlayer : MonoBehaviour
 
         if (Thunderbolt.activeInHierarchy)
         {
+            Debug.Log("thunder");
             transposer.m_FollowOffset.x = 0f;
             transposer.m_FollowOffset.y = 4f;
             transposer.m_FollowOffset.z = -2f;
