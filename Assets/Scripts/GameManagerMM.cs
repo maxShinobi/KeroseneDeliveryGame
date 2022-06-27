@@ -39,9 +39,4 @@ public class GameManagerMM : MonoBehaviour
     {
         Application.Quit();
     }
-
-    public void DeletePlayerPrefs()
-    {
-        PlayerPrefs.DeleteAll();
-    }
 }

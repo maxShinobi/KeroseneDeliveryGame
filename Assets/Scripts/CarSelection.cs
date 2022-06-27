@@ -13,6 +13,7 @@ public class CarSelection : MonoBehaviour
     [SerializeField] int currentCarIndex;
 
     [SerializeField] Button buyButton;
+    [SerializeField] GameObject priceTag;
     [SerializeField] Button startButton;
 
     [SerializeField] GameObject[] carModels;
