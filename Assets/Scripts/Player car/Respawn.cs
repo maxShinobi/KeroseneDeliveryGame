@@ -15,7 +15,6 @@ public class Respawn : MonoBehaviour
     {
         Player.transform.rotation = originalRotation;
         grounded = true;
-        Debug.LogFormat("{0} qwe {1}", Player.transform.rotation.w, Player.transform.rotation.z);
     }
 
     private void Update()
@@ -32,7 +31,6 @@ public class Respawn : MonoBehaviour
             originalRotation = Player.transform.rotation;
 
         PlayerLosesSomeKerosene();
-        Debug.LogFormat("{0} qwe {1}", Player.transform.rotation.w, Player.transform.rotation.z);
     }
 
     private void PlayerLosesSomeKerosene()

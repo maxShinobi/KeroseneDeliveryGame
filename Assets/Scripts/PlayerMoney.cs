@@ -22,7 +22,7 @@ public class PlayerMoney : MonoBehaviour
         playerMoney = PlayerPrefs.GetInt("AmountOfMoney", 100000);
 
         playerMoneyText.text = playerMoney + "$";
-        playerMoneyText.text = "MONEY: " + playerMoney + "$";
+        playerMoneyText.text = playerMoney + "$";
     }
 
     public void UpdatePlayerMoney()
@@ -36,6 +36,6 @@ public class PlayerMoney : MonoBehaviour
     {
         playerMoney = PlayerPrefs.GetInt("AmountOfMoney", playerMoney);
 
-        playerMoneyText.text = "MONEY: " + playerMoney + "$";
+        playerMoneyText.text = playerMoney + "$";
     }
 }

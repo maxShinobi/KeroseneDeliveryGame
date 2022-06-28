@@ -32,7 +32,6 @@ public class CameraFollowsPlayer : MonoBehaviour
 
         if (player.activeInHierarchy)
         {
-            Debug.Log("player active");
             activePlayer = player;
 
             followTarget = activePlayer.transform;
@@ -43,7 +42,6 @@ public class CameraFollowsPlayer : MonoBehaviour
 
         if(Tako.activeInHierarchy)
         {
-            Debug.Log("tako");
             transposer.m_FollowOffset.x = 0f;
             transposer.m_FollowOffset.y = 2.64f;
             transposer.m_FollowOffset.z = -4.91f;
@@ -55,7 +53,6 @@ public class CameraFollowsPlayer : MonoBehaviour
 
         if (Dodger.activeInHierarchy)
         {
-            Debug.Log("do");
             transposer.m_FollowOffset.x = 0f;
             transposer.m_FollowOffset.y = 2.34f;
             transposer.m_FollowOffset.z = -4.91f;
@@ -67,7 +64,6 @@ public class CameraFollowsPlayer : MonoBehaviour
 
         if (Lastrada.activeInHierarchy)
         {
-            Debug.Log("la");
             transposer.m_FollowOffset.x = 0f;
             transposer.m_FollowOffset.y = 2.77f;
             transposer.m_FollowOffset.z = -6.95f;
@@ -79,7 +75,6 @@ public class CameraFollowsPlayer : MonoBehaviour
 
         if (MordFustang.activeInHierarchy)
         {
-            Debug.Log("mf");
             transposer.m_FollowOffset.x = 0f;
             transposer.m_FollowOffset.y = 2.48f;
             transposer.m_FollowOffset.z = -4.96f;
@@ -91,7 +86,6 @@ public class CameraFollowsPlayer : MonoBehaviour
 
         if (Tirex.activeInHierarchy)
         {
-            Debug.Log("tirex");
             transposer.m_FollowOffset.x = 0f;
             transposer.m_FollowOffset.y = 3.25f;
             transposer.m_FollowOffset.z = -7f;
@@ -103,7 +97,6 @@ public class CameraFollowsPlayer : MonoBehaviour
 
         if (Thunderbolt.activeInHierarchy)
         {
-            Debug.Log("thunder");
             transposer.m_FollowOffset.x = 0f;
             transposer.m_FollowOffset.y = 4f;
             transposer.m_FollowOffset.z = -2f;
