@@ -37,7 +37,7 @@ public class PlayerCarController : MonoBehaviour
 
 		wheels = GetComponentsInChildren<WheelCollider>();
 
-		for (int i = 0; i < wheels.Length; ++i)
+/*		for (int i = 0; i < wheels.Length; ++i)
 		{
 			var wheel = wheels[i];
 
@@ -47,12 +47,12 @@ public class PlayerCarController : MonoBehaviour
 				var ws = GameObject.Instantiate(wheelShape);
 				ws.transform.parent = wheel.transform;
 
-				if (wheel.transform.localPosition.x < 0f)
+				if (wheel.transform.localPosition.x < 10f)
 				{
-					ws.transform.localScale = new Vector3(ws.transform.localScale.x * -1f, ws.transform.localScale.y, ws.transform.localScale.z);
+					ws.transform.localScale = new Vector3(ws.transform.localScale.x, ws.transform.localScale.y, ws.transform.localScale.z);
 				}
 			}
-		}
+		}*/
 	}
 	
 	public void ApplyLocalPositionToVisuals(WheelCollider collider){

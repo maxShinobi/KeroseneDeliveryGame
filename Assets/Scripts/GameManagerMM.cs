@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerMM : MonoBehaviour
 {
     [SerializeField] GameObject mainMenuUI;
     [SerializeField] GameObject carSelectionUI;
     [SerializeField] GameObject cars;
+
+    public string mainMenu;
 
     private void Awake()
     {
@@ -38,5 +41,13 @@ public class GameManagerMM : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void ClearPP()
+    {
+        {
+            PlayerPrefs.DeleteAll();
+            SceneManager.LoadScene(mainMenu);
+        }
     }
 }
