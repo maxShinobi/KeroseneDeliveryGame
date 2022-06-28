@@ -43,11 +43,13 @@ public class Bucket : MonoBehaviour
     {
         if(amountNeeded > 0 && playerKerosene >= 10)
         {
+            Debug.Log("can sell");
             amountNeeded -= depletionValue;
 
             if (amountNeeded == 0)
             {
                 gameObject.SetActive(false);
+                Debug.Log("disabled");
             }
         } else
         {
@@ -60,7 +62,8 @@ public class Bucket : MonoBehaviour
     {
         if(playerKerosene >= 10)
         {
-            PlayerMoney.instance.playerMoney += buyPrice;
+            //PlayerMoney.instance.playerMoney += buyPrice;
+            PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney += buyPrice);
 
             PlayerMoney.instance.UpdatePlayerMoney();
         }
