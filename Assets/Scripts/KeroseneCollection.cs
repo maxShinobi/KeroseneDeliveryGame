@@ -12,15 +12,26 @@ public class KeroseneCollection : MonoBehaviour
     bool playerTankIsFull;
     bool canBuySomeKerosine;
 
+    private GameObject activeCar;
+
+    private int currentPlayerKeroseneValue;
+    private int maxmimumPlayerKeroseneValue;
+
     private void Awake()
     {
         keroseneCollectionCanvas.enabled = false;
-        enabled = false;
+    }
+
+    private void Start()
+    {
+        //StartGameCarSelection.instance.CheckActiveCar();
+        //activeCar = StartGameCarSelection.instance.cars[StartGameCarSelection.instance.currentCarIndex];
+        currentPlayerKeroseneValue = PlayerPrefs.GetInt("AmountOfKerosene", PlayerKerosene.instance.currentValue);
+        //ActivePlayerCurrentKeroseneValue();
     }
 
     private void OnTriggerStay(Collider other)
     {
-        enabled = true;
         if (other.gameObject.tag == "Player")
         {
             keroseneCollectionCanvas.enabled = true;
@@ -35,7 +46,6 @@ public class KeroseneCollection : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        enabled = false;
         keroseneCollectionCanvas.enabled = false;
     }
 
@@ -62,17 +72,23 @@ public class KeroseneCollection : MonoBehaviour
             {
                 playerTankIsFull = true;
                 canBuySomeKerosine = false;
+                PlayerPrefs.GetInt("AmountOfKerosene", PlayerKerosene.instance.currentValue);
                 Debug.Log("Tank is full");
             } else
             {
                 playerTankIsFull = false;
                 canBuySomeKerosine = true;
-            }    
+            }
         }
         else
         {
             Debug.Log("not enough money");
         }
         return PlayerMoney.instance.playerMoney;
+    }
+
+    private void ActivePlayerCurrentKeroseneValue()
+    {
+        activeCar.GetComponent<PlayerKerosene>().SetCurrentState();
     }
 }

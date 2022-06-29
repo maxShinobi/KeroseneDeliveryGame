@@ -16,8 +16,6 @@ public class PlayerCarController : MonoBehaviour
 	
 	public float brakeTorque = 1000;
 
-	public GameObject wheelShape;
-
 	Rigidbody rb;
 
 	WheelCollider[] wheels;

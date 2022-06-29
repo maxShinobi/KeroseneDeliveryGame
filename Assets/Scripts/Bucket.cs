@@ -30,7 +30,7 @@ public class Bucket : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            enabled = true;
+
         }
     }
 
@@ -57,7 +57,7 @@ public class Bucket : MonoBehaviour
         if(playerKerosene >= 10)
         {
             //PlayerMoney.instance.playerMoney += buyPrice;
-            PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney += buyPrice);
+            PlayerPrefs.GetInt("AmountOfMoney", PlayerMoney.instance.playerMoney += buyPrice);
 
             PlayerMoney.instance.UpdatePlayerMoney();
 

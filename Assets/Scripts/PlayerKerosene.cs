@@ -22,12 +22,10 @@ public class PlayerKerosene : MonoBehaviour
         currentValue = PlayerPrefs.GetInt("AmountOfKerosene", currentValue);
     }
 
-    void SetCurrentState()
+    public void SetCurrentState()
     {
         float fillAmount = (float)currentValue / (float)maximumValue;
         mask.fillAmount = fillAmount;
-
-        currentValue = PlayerPrefs.GetInt("AmountOfKerosene", currentValue);
     }
 
     private void OnTriggerStay(Collider bucketCollider)
@@ -40,6 +38,7 @@ public class PlayerKerosene : MonoBehaviour
             {
                 DepleteTheKeroseneBar(depletionValue);
                 Bucket.instance.SellKerosine();
+                PlayerPrefs.GetInt("AmountOfKerosene", currentValue);
             }
         }
     }
@@ -48,9 +47,9 @@ public class PlayerKerosene : MonoBehaviour
     {
         if (currentValue < maximumValue)
         {
-            currentValue += value;
+            //currentValue += value;
 
-            PlayerPrefs.SetInt("AmountOfKerosene", currentValue);
+            PlayerPrefs.SetInt("AmountOfKerosene", currentValue += value);
 
         }
         else
@@ -65,10 +64,9 @@ public class PlayerKerosene : MonoBehaviour
     {
         if (currentValue > minimumValue)
         {
-            currentValue -= value;
+            //currentValue -= value;
 
-            PlayerPrefs.SetInt("AmountOfKerosene", currentValue);
-
+            PlayerPrefs.SetInt("AmountOfKerosene", currentValue -= value);
         }
         else
         {
