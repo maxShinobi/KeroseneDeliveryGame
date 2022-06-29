@@ -19,7 +19,7 @@ public class PlayerMoney : MonoBehaviour
 
     private void Start()
     {
-        playerMoney = PlayerPrefs.GetInt("AmountOfMoney", 100000);
+        playerMoney = PlayerPrefs.GetInt("AmountOfMoney", 1000000);
 
         playerMoneyText.text = playerMoney + "$";
         playerMoneyText.text = playerMoney + "$";

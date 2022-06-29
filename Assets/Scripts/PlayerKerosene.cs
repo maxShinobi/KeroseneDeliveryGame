@@ -8,6 +8,7 @@ public class PlayerKerosene : MonoBehaviour
     public static PlayerKerosene instance;
 
     public int maximumValue, minimumValue, currentValue, depletionValue;
+    public int buyPrice = 2;
 
     [SerializeField] Image mask;
 
@@ -44,7 +45,7 @@ public class PlayerKerosene : MonoBehaviour
             if (b.KerosineDecrease(depletionValue) > 0)
             {
                 DepleteTheKeroseneBar(depletionValue);
-                Bucket.instance.SellKerosine();
+                Bucket.instance.SellKerosine(buyPrice);
                 PlayerPrefs.GetInt("AmountOfKerosene", currentValue);
             }
         }

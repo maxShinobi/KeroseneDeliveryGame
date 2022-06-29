@@ -52,12 +52,11 @@ public class Bucket : MonoBehaviour
         return amountNeeded;
     }
 
-    public int SellKerosine()
+    public int SellKerosine(int buyPrice)
     {
         if(playerKerosene >= 10)
         {
-            //PlayerMoney.instance.playerMoney += buyPrice;
-            PlayerPrefs.GetInt("AmountOfMoney", PlayerMoney.instance.playerMoney += buyPrice);
+            PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney += buyPrice);
 
             PlayerMoney.instance.UpdatePlayerMoney();
 
