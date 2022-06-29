@@ -10,11 +10,11 @@ public class KeroseneCollection : MonoBehaviour
 
     bool buyButtonPressed;
     bool playerTankIsFull;
-    bool canBuySomeKerosine;
 
     private void Awake()
     {
         keroseneCollectionCanvas.enabled = false;
+        playerTankIsFull = false;
     }
 
     private void OnTriggerStay(Collider other)
@@ -24,11 +24,21 @@ public class KeroseneCollection : MonoBehaviour
             keroseneCollectionCanvas.enabled = true;
         }
 
+        if (PlayerKerosene.instance.currentValue < PlayerKerosene.instance.maximumValue)
+        {
+            playerTankIsFull = false;
+        }
+
         if (buyButtonPressed && !playerTankIsFull)
         {
             PlayerKerosene.instance.FillTheKeroseneBar(1);
             PlayerMoney.instance.UpdatePlayerMoney();
             BuyKerosine(kerosenePrice);
+
+            if (PlayerKerosene.instance.currentValue == PlayerKerosene.instance.maximumValue)
+            {
+                playerTankIsFull = true;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -38,10 +48,11 @@ public class KeroseneCollection : MonoBehaviour
 
     public void CanBuyKerosene(bool buying)
     {
-        if(buying)
+        if (buying)
         {
             buyButtonPressed = true;
-        } else
+        }
+        else
         {
             buyButtonPressed = false;
         }
@@ -51,21 +62,13 @@ public class KeroseneCollection : MonoBehaviour
     {
         if (PlayerMoney.instance.playerMoney >= 1 && PlayerKerosene.instance.currentValue <= PlayerKerosene.instance.maximumValue)
         {
-            canBuySomeKerosine = true;
-
             PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney -= buyValue);
 
             Debug.Log("buying kerosene");
 
             if (PlayerKerosene.instance.currentValue == PlayerKerosene.instance.maximumValue)
             {
-                playerTankIsFull = true;
-                canBuySomeKerosine = false;
                 Debug.Log("Tank is full");
-            } else
-            {
-                playerTankIsFull = false;
-                canBuySomeKerosine = true;
             }
         }
         else
