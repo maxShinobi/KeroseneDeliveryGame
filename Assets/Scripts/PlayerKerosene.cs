@@ -20,6 +20,13 @@ public class PlayerKerosene : MonoBehaviour
     private void Start()
     {
         currentValue = PlayerPrefs.GetInt("AmountOfKerosene", currentValue);
+
+        SetCurrentState();
+
+        if (currentValue > maximumValue)
+        {
+            currentValue = maximumValue;
+        }
     }
 
     public void SetCurrentState()

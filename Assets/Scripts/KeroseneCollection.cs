@@ -12,22 +12,9 @@ public class KeroseneCollection : MonoBehaviour
     bool playerTankIsFull;
     bool canBuySomeKerosine;
 
-    private GameObject activeCar;
-
-    private int currentPlayerKeroseneValue;
-    private int maxmimumPlayerKeroseneValue;
-
     private void Awake()
     {
         keroseneCollectionCanvas.enabled = false;
-    }
-
-    private void Start()
-    {
-        //StartGameCarSelection.instance.CheckActiveCar();
-        //activeCar = StartGameCarSelection.instance.cars[StartGameCarSelection.instance.currentCarIndex];
-        currentPlayerKeroseneValue = PlayerPrefs.GetInt("AmountOfKerosene", PlayerKerosene.instance.currentValue);
-        //ActivePlayerCurrentKeroseneValue();
     }
 
     private void OnTriggerStay(Collider other)
@@ -85,10 +72,5 @@ public class KeroseneCollection : MonoBehaviour
             Debug.Log("not enough money");
         }
         return PlayerMoney.instance.playerMoney;
-    }
-
-    private void ActivePlayerCurrentKeroseneValue()
-    {
-        activeCar.GetComponent<PlayerKerosene>().SetCurrentState();
     }
 }
