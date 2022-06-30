@@ -6,29 +6,33 @@ public class Respawn : MonoBehaviour
 
     [SerializeField] int lostKeroseneValue;
 
-    private Vector3 originalPosition;
-    private Quaternion originalRotation;
+    Vector3 originalPosition;
+
+    float originalRotationX;
+    float originalRotationY;
+    float originalRotationZ;
 
     bool grounded;
 
     private void Start()
     {
-        Player.transform.rotation = originalRotation;
+        originalRotationX = Player.transform.rotation.x;
+        originalRotationZ = Player.transform.rotation.z;
+
         grounded = true;
     }
 
     private void Update()
     {
-        originalPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        originalRotation = new Quaternion(Player.transform.rotation.w, Player.transform.rotation.y, Player.transform.rotation.x, Player.transform.rotation.z);
+        originalPosition = new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);
     }
 
     public void RespawnCar()
     {
-        originalPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        Player.transform.position = new Vector3(originalPosition.x, 1, originalPosition.z);
+        originalPosition = new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);
+        Player.transform.position = new Vector3(originalPosition.x, 2, originalPosition.z);
 
-            originalRotation = Player.transform.rotation;
+        Player.transform.rotation = Quaternion.Euler(originalRotationX, originalRotationY, originalRotationZ);
 
         PlayerLosesSomeKerosene();
     }
@@ -38,6 +42,11 @@ public class Respawn : MonoBehaviour
         if(PlayerKerosene.instance.currentValue >= 20)
         {
             PlayerKerosene.instance.DepleteTheKeroseneBar(lostKeroseneValue);
+
+            if(PlayerKerosene.instance.currentValue < 20)
+            {
+                PlayerKerosene.instance.currentValue = 0;
+            }
         }
     }
 }
