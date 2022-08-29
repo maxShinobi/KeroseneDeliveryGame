@@ -14,20 +14,9 @@ public class KeroseneSpawn : MonoBehaviour
 
     [SerializeField] Collider spawnCollider;
 
-    public int playerKerosene;
-
-    private GameObject activeCar;
-
     private void Awake()
     {
         instance = this;
-    }
-
-    private void Start()
-    {
-        StartGameCarSelection.instance.CheckActiveCar();
-        activeCar = StartGameCarSelection.instance.cars[StartGameCarSelection.instance.currentCarIndex];
-        playerKerosene = activeCar.GetComponent<PlayerKerosene>().currentValue;
     }
 
     private void OnTriggerEnter(Collider other)

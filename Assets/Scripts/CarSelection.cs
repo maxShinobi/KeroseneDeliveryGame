@@ -44,9 +44,8 @@ public class CarSelection : MonoBehaviour
         foreach (GameObject car in carModels)
         {
             car.SetActive(false);
-
-            carModels[currentCarIndex].SetActive(true);
         }
+        carModels[currentCarIndex].SetActive(true);
     }
     private void Update()
     {

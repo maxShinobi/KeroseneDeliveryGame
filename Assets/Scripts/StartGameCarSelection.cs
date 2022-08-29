@@ -27,8 +27,7 @@ public class StartGameCarSelection : MonoBehaviour
         foreach (GameObject car in cars)
         {
             car.SetActive(false);
-
-            cars[currentCarIndex].SetActive(true);
         }
+        cars[currentCarIndex].SetActive(true);
     }
 }

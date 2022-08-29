@@ -43,11 +43,13 @@ public class PlayerKerosene : MonoBehaviour
         {
             Bucket b = bucketCollider.GetComponentInParent<Bucket>();
 
-            if (b.KerosineDecrease(depletionValue) > 0)
+            if (!b.bucketFull)
             {
-                DepleteTheKeroseneBar(depletionValue);
-                Bucket.instance.SellKerosine(buyPrice);
-                PlayerPrefs.GetInt("AmountOfKerosene", currentValue);
+                if (b.KerosineDecrease(depletionValue) > 0)
+                {
+                    DepleteTheKeroseneBar(depletionValue);
+                    PlayerPrefs.GetInt("AmountOfKerosene", currentValue);
+                }
             }
         }
     }
@@ -63,7 +65,7 @@ public class PlayerKerosene : MonoBehaviour
         }
         else
         {
-            Mathf.Clamp(currentValue, 0, maximumValue);
+            //Mathf.Clamp(currentValue, 0, maximumValue);
         }
 
         SetCurrentState();

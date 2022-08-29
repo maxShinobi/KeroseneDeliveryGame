@@ -7,42 +7,47 @@ public class Bucket : MonoBehaviour
     public static Bucket instance;
 
     public int amountNeeded = 10;
-    public int buyPrice = 2;
+    int buyPrice = 50;
     public int depletionValue = 1;
+
+    public bool bucketFull;
 
     private void Awake()
     {
         instance = this;
+        bucketFull = false;
     }
 
     public int KerosineDecrease(int depletionValue)
     {
-        if (amountNeeded > 0 && KeroseneSpawn.instance.playerKerosene >= 10)
+        int currentValue = PlayerPrefs.GetInt("AmountOfKerosene");
+
+        if (amountNeeded > 0 && currentValue >= amountNeeded)
         {
             amountNeeded -= depletionValue;
 
-            if (amountNeeded == 0)
+            Debug.Log(amountNeeded);
+            Debug.Log(PlayerMoney.instance.playerMoney + " before");
+
+            if (amountNeeded <= 0)
             {
                 gameObject.SetActive(false);
             }
-        }
-        else
-        {
-            Debug.Log("not enough kerosine");
-        }
-        return amountNeeded;
-    }
+            bucketFull = true;
+            //Debug.Log("not enough kerosine");
+            Debug.Log(amountNeeded);
 
-    public int SellKerosine(int buyPrice)
-    {
-        if(KeroseneSpawn.instance.playerKerosene >= 10)
-        {
-            PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney += buyPrice);
+            PlayerMoney.instance.playerMoney += buyPrice;
+
+            PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney);
+
+            Debug.Log(PlayerMoney.instance.playerMoney + " after");
 
             PlayerMoney.instance.UpdatePlayerMoney();
 
             Debug.Log("selling");
+
         }
-        return buyPrice;
+        return amountNeeded;
     }
 }
