@@ -17,6 +17,7 @@ public class PlayerKerosene : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        SetCurrentState();
     }
     private void Start()
     {

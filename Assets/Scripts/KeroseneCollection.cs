@@ -8,6 +8,8 @@ public class KeroseneCollection : MonoBehaviour
 
     int kerosenePrice = 1;
 
+    [SerializeField] GameObject buyButton;
+
     bool buyButtonPressed;
     bool playerTankIsFull;
 
