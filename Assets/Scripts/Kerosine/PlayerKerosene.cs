@@ -14,6 +14,8 @@ public class PlayerKerosene : MonoBehaviour
 
     [SerializeField] Collider bucketCollider;
 
+    private int currentCarIndex;
+
     private void Awake()
     {
         instance = this;
@@ -21,7 +23,7 @@ public class PlayerKerosene : MonoBehaviour
     }
     private void Start()
     {
-        currentValue = PlayerPrefs.GetInt("AmountOfKerosene", currentValue);
+        currentValue = PlayerData.GetCurrentCarKerosene();
 
         SetCurrentState();
 
@@ -48,7 +50,7 @@ public class PlayerKerosene : MonoBehaviour
                 if (b.KerosineDecrease(depletionValue) > 0)
                 {
                     DepleteTheKeroseneBar(depletionValue);
-                    PlayerPrefs.GetInt("AmountOfKerosene", currentValue);
+                    PlayerData.GetCurrentCarKerosene();
                 }
             }
         }
@@ -58,9 +60,9 @@ public class PlayerKerosene : MonoBehaviour
     {
         if (currentValue < maximumValue)
         {
-            //currentValue += value;
+            currentValue += value;
 
-            PlayerPrefs.SetInt("AmountOfKerosene", currentValue += value);
+            PlayerData.SetCurrentCarKerosene(currentValue);
 
         }
         else
@@ -75,9 +77,9 @@ public class PlayerKerosene : MonoBehaviour
     {
         if (currentValue > minimumValue)
         {
-            //currentValue -= value;
+            currentValue -= value;
 
-            PlayerPrefs.SetInt("AmountOfKerosene", currentValue -= value);
+            PlayerData.SetCurrentCarKerosene(currentValue);
         }
         else
         {

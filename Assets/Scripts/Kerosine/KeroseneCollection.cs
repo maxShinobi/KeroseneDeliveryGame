@@ -69,7 +69,7 @@ public class KeroseneCollection : MonoBehaviour
             if (PlayerKerosene.instance.currentValue == PlayerKerosene.instance.maximumValue)
             {
                 Debug.Log("Tank is full");
-                PlayerPrefs.SetInt("AmountOfKerosene", PlayerKerosene.instance.currentValue);
+                PlayerData.SetCurrentCarKerosene(PlayerKerosene.instance.currentValue);
             }
         }
         else
