@@ -66,8 +66,6 @@ public class KeroseneCollection : MonoBehaviour
         {
             PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney -= buyValue);
 
-            Debug.Log("buying kerosene");
-
             if (PlayerKerosene.instance.currentValue == PlayerKerosene.instance.maximumValue)
             {
                 Debug.Log("Tank is full");

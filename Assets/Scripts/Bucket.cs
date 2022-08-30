@@ -7,8 +7,9 @@ public class Bucket : MonoBehaviour
     public static Bucket instance;
 
     public int amountNeeded = 10;
-    int buyPrice = 50;
     public int depletionValue = 1;
+
+    int sellPrice = 20;
 
     public bool bucketFull;
 
@@ -26,27 +27,20 @@ public class Bucket : MonoBehaviour
         {
             amountNeeded -= depletionValue;
 
-            Debug.Log(amountNeeded);
-            Debug.Log(PlayerMoney.instance.playerMoney + " before");
-
             if (amountNeeded <= 0)
             {
                 gameObject.SetActive(false);
+
+                bucketFull = true;
+
+                PlayerMoney.instance.playerMoney += sellPrice;
+                PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney);
+                PlayerMoney.instance.UpdatePlayerMoney();
             }
-            bucketFull = true;
-            //Debug.Log("not enough kerosine");
-            Debug.Log(amountNeeded);
-
-            PlayerMoney.instance.playerMoney += buyPrice;
-
-            PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney);
-
-            Debug.Log(PlayerMoney.instance.playerMoney + " after");
-
-            PlayerMoney.instance.UpdatePlayerMoney();
-
-            Debug.Log("selling");
-
+        }
+        else
+        {
+            Debug.Log("not enough kerosine");
         }
         return amountNeeded;
     }
