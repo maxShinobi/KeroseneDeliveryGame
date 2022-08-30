@@ -12,7 +12,6 @@ public class MyPlayerPrefs : PlayerPrefs
             instance = new MyPlayerPrefs();
         }
     }
-
     public int GetPlayerMoney(int playerMoney)
     {
         return PlayerPrefs.GetInt("AmountOfMoney", playerMoney);
