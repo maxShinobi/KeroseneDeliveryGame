@@ -50,7 +50,6 @@ public class PlayerKerosene : MonoBehaviour
                 if (b.KerosineDecrease(depletionValue) > 0)
                 {
                     DepleteTheKeroseneBar(depletionValue);
-                    PlayerData.GetCurrentCarKerosene();
                 }
             }
         }

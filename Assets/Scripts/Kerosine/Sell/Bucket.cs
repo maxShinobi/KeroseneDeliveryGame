@@ -21,7 +21,7 @@ public class Bucket : MonoBehaviour
 
     public int KerosineDecrease(int depletionValue)
     {
-        int currentValue = PlayerPrefs.GetInt("AmountOfKerosene");
+        int currentValue = PlayerData.GetCurrentCarKerosene();
 
         if (amountNeeded > 0 && currentValue >= amountNeeded)
         {
