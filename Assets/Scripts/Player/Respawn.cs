@@ -12,14 +12,10 @@ public class Respawn : MonoBehaviour
     float originalRotationY;
     float originalRotationZ;
 
-    bool grounded;
-
     private void Start()
     {
         originalRotationX = Player.transform.rotation.x;
         originalRotationZ = Player.transform.rotation.z;
-
-        grounded = true;
     }
 
     private void Update()
@@ -39,14 +35,16 @@ public class Respawn : MonoBehaviour
 
     private void PlayerLosesSomeKerosene()
     {
-        if(PlayerKerosene.instance.currentValue >= 20)
+        if(PlayerKerosene.instance.currentValue >= lostKeroseneValue)
         {
             PlayerKerosene.instance.DepleteTheKeroseneBar(lostKeroseneValue);
+        }
 
-            if(PlayerKerosene.instance.currentValue < 20)
-            {
-                PlayerKerosene.instance.currentValue = 0;
-            }
+        if (PlayerKerosene.instance.currentValue < lostKeroseneValue)
+        {
+            PlayerKerosene.instance.currentValue = 0;
+
+            PlayerKerosene.instance.DepleteTheKeroseneBar(lostKeroseneValue);
         }
     }
 }

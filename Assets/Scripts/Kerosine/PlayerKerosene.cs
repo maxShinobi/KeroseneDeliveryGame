@@ -14,8 +14,6 @@ public class PlayerKerosene : MonoBehaviour
 
     [SerializeField] Collider bucketCollider;
 
-    private int currentCarIndex;
-
     private void Awake()
     {
         instance = this;
@@ -66,7 +64,7 @@ public class PlayerKerosene : MonoBehaviour
         }
         else
         {
-            //Mathf.Clamp(currentValue, 0, maximumValue);
+            Mathf.Clamp(currentValue, 0, maximumValue);
         }
 
         SetCurrentState();
