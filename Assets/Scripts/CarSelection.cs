@@ -11,6 +11,7 @@ public class CarSelection : MonoBehaviour
     [SerializeField] float rotationSpeed;
 
     [SerializeField] int currentCarIndex;
+    [SerializeField] int mordFustangIndex;
 
     [SerializeField] Button buyButton;
     [SerializeField] Button startButton;
@@ -23,6 +24,8 @@ public class CarSelection : MonoBehaviour
     [SerializeField] GameObject cars;
 
     [SerializeField] CarClass[] carClass;
+
+    bool mordFustangUnlocked = SecretCar.instance.mordFustangUnlocked;
 
     private void Start()
     {
@@ -40,6 +43,10 @@ public class CarSelection : MonoBehaviour
         }
 
         currentCarIndex = PlayerPrefs.GetInt("SelectedCar", 0);
+        mordFustangIndex = PlayerPrefs.GetInt("SelectedCar", 3);
+
+        CarClass m = carClass[mordFustangIndex];
+        m.isUnlocked = false;
 
         foreach (GameObject car in carModels)
         {
@@ -56,6 +63,7 @@ public class CarSelection : MonoBehaviour
     private void UpdateUI()
     {
         CarClass c = carClass[currentCarIndex];
+        CarClass m = carClass[mordFustangIndex];
         if (c.isUnlocked)
         {
             buyButton.gameObject.SetActive(false);
@@ -66,7 +74,7 @@ public class CarSelection : MonoBehaviour
             buyButton.gameObject.SetActive(true);
             startButton.interactable = false;
 
-            if (PlayerPrefs.GetInt("AmountOfMoney", PlayerMoney.instance.playerMoney) >= c.price)
+            if (PlayerPrefs.GetInt("AmountOfMoney", PlayerMoney.instance.playerMoney) >= c.price || SecretCar.instance.mordFustangUnlocked)
             {
                 buyButton.interactable = true;
             }
@@ -102,13 +110,16 @@ public class CarSelection : MonoBehaviour
         carModels[currentCarIndex].SetActive(true);
 
         CarClass c = carClass[currentCarIndex];
-        if (!c.isUnlocked)
+        CarClass m = carClass[mordFustangIndex];
+        if (!c.isUnlocked || !mordFustangUnlocked)
         {
+            m.isUnlocked = false;
             startButton.interactable = false;
             return;
         }
         else
         {
+            m.isUnlocked = true;
             startButton.interactable = true;
         }
 
@@ -130,13 +141,16 @@ public class CarSelection : MonoBehaviour
         carModels[currentCarIndex].SetActive(true);
 
         CarClass c = carClass[currentCarIndex];
-        if (!c.isUnlocked)
+        CarClass m = carClass[mordFustangIndex];
+        if (!c.isUnlocked ||!mordFustangUnlocked)
         {
+            m.isUnlocked = false;
             startButton.interactable = false;
             return;
         }
         else
         {
+            m.isUnlocked = true;
             startButton.interactable = true;
         }
 
@@ -146,6 +160,7 @@ public class CarSelection : MonoBehaviour
     public void StartGame()
     {
         CarClass c = carClass[currentCarIndex];
+        CarClass m = carClass[mordFustangIndex];
         if (!c.isUnlocked)
         {
             startButton.interactable = false;
