@@ -9,7 +9,7 @@ public class GoldenWheel : MonoBehaviour
             PlayerMoney.instance.playerMoney += 2;
             PlayerPrefs.SetInt("AmountOfMoney", PlayerMoney.instance.playerMoney);
             PlayerMoney.instance.UpdatePlayerMoney();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -12,20 +12,29 @@ public class GoldenWheelSpawn : MonoBehaviour
 
     private void Start()
     {
-        SpawnObjectInRandomArea();
+        InvokeRepeating("DestroyPreviouslySpawnedObjects", 2f, 2f);
+        InvokeRepeating("SpawnObjectsInRandomArea", 0.1f, 3f);
     }
 
-    public void SpawnObjectInRandomArea()
+    private void SpawnObjectsInRandomArea()
     {
         for (int i = 0; i < spawnAmount;)
         {
             int n = Random.Range(0, gameObjectArray.Length - 1);
 
-            if (!gameObjectArray[n].transform.GetChild(0).gameObject.activeSelf)
+            if (!gameObjectArray[n].transform.GetChild(0).gameObject.activeInHierarchy)
             {
                 gameObjectArray[n].transform.GetChild(0).gameObject.SetActive(true);
                 i++;
             }
+        }
+    }
+
+    private void DestroyPreviouslySpawnedObjects()
+    {
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("GoldenWheel"))
+        {
+            obj.SetActive(false);
         }
     }
 }
