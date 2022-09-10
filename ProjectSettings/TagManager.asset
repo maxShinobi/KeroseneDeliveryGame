@@ -8,6 +8,7 @@ TagManager:
   - Bucket
   - LightPole
   - GoldenWheel
+  - Coin
   layers:
   - Default
   - TransparentFX

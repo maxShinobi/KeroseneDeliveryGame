@@ -12,8 +12,8 @@ public class GoldenWheelSpawn : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("DestroyPreviouslySpawnedObjects", 2f, 2f);
-        InvokeRepeating("SpawnObjectsInRandomArea", 0.1f, 3f);
+        InvokeRepeating("DestroyPreviouslySpawnedObjects", 5f, 5f);
+        InvokeRepeating("SpawnObjectsInRandomArea", 0.1f, 6f);
     }
 
     private void SpawnObjectsInRandomArea()
@@ -26,6 +26,12 @@ public class GoldenWheelSpawn : MonoBehaviour
             {
                 gameObjectArray[n].transform.GetChild(0).gameObject.SetActive(true);
                 i++;
+
+                if (GoldenWheel.instance.coinDeactivated)
+                {
+                    
+                    GoldenWheel.instance.coinDeactivated = true;
+                }
             }
         }
     }

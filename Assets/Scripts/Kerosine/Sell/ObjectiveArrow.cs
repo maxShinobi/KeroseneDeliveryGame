@@ -6,11 +6,6 @@ public class ObjectiveArrow : MonoBehaviour
 {
     [SerializeField] private GameObject arrow;
 
-    private void Start()
-    {
-        //arrow.SetActive(false);
-    }
-
     private void Update()
     {
         FindClosestBucket();
@@ -31,16 +26,11 @@ public class ObjectiveArrow : MonoBehaviour
                 distanceToClosestBucket = distanceToBucket;
                 closestBucket = currentBucket;
 
-                //arrow.SetActive(true);
-                //transform.LookAt(new Vector2(closestBucket.transform.position.x, closestBucket.transform.position.y));
-                var lookPos = closestBucket.transform.position - this.transform.position;
-                lookPos.y = 0;
-                var rotation = Quaternion.LookRotation(lookPos);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+                
 
-                if(closestBucket = null)
+                if (closestBucket = null)
                 {
-                    //arrow.SetActive(false);
+                    arrow.SetActive(false);
                 }
             }
         }
