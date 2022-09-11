@@ -25,8 +25,17 @@ public class ObjectiveArrow : MonoBehaviour
             {
                 distanceToClosestBucket = distanceToBucket;
                 closestBucket = currentBucket;
+                arrow.SetActive(true);
 
-                
+                Vector3 dir = closestBucket.transform.position - arrow.transform.position;
+                Vector2 twodimDir = new Vector2(dir.x, dir.z);
+                twodimDir.Normalize();
+                float angle = Mathf.Atan2(twodimDir.y, twodimDir.x);
+
+                Quaternion originRot = arrow.transform.rotation;
+                arrow.transform.LookAt(closestBucket.transform.position);
+                Quaternion lookRot = arrow.transform.rotation;
+
 
                 if (closestBucket = null)
                 {
